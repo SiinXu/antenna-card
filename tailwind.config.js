@@ -19,9 +19,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(135deg, #ffffff, #B8B5FF, #7B78FF)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
         "custom-radial-gradient":
-          "linear-gradient(135deg, #ffffff, #B8B5FF, #7B78FF)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
         "glass-gradient":
           "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
         "button-purple-glow":
@@ -95,8 +95,8 @@ module.exports = {
         'glass': '12px',
       },
       colors: {
-        'history-purple': '#E6E6FA',  // 浅紫色用于历史消息
-        'current-purple': '#9370DB',  // 深紫色用于当前消息
+        'history-purple': '#B8B5FF',  // 浅紫色用于历史消息
+        'current-purple': '#7B78FF',  // 深紫色用于当前消息
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
