@@ -200,20 +200,20 @@ const CardComponent = ({
       </CardContent>
       {hoveredClose === index ? (
         <div
-          className="absolute -top-3 -right-3 cursor-pointer z-10"
-          onClick={() => deleteNote(index)}  
+          className="absolute -top-2 -right-2 cursor-pointer z-10 bg-white rounded-full"
+          onClick={() => deleteNote(index)}
           onMouseEnter={() => setHoveredClose(index)}
           onMouseLeave={() => setHoveredClose(null)}
         >
-          <IoIosCloseCircle className="w-8 h-8 text-red-500" />
+          <IoIosCloseCircle className="w-6 h-6 text-red-500" />
         </div>
       ) : (
         <div
-          className="absolute -top-3 -right-3 cursor-pointer z-10"
+          className="absolute -top-2 -right-2 cursor-pointer z-10 bg-white rounded-full"
           onMouseEnter={() => setHoveredClose(index)}
           onMouseLeave={() => setHoveredClose(null)}
         >
-          <IoIosCloseCircleOutline className="w-8 h-8 text-gray-500" />
+          <IoIosCloseCircleOutline className="w-6 h-6 text-gray-500" />
         </div>
       )}
     </Card>

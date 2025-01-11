@@ -16,8 +16,8 @@ const MyWrapper = ({ children }) => {
         350: 1,
         750: 2,
         1024: 3,
-        1280: 4,
-        1536: 5,
+        1280: 3,
+        1536: 4,
       }}
     >
       <Masonry gutter="1rem">{children}</Masonry>
@@ -40,18 +40,20 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 overflow-x-hidden">
       <DndProvider backend={HTML5Backend}>
         <MyWrapper>
           <AnimatePresence mode="popLayout">
             {notes.map((note, index) => {
               const randomIndex = Math.floor(Math.random() * noteColors.length);
+              const isNew = index === notes.length - 1;
               return (
                 <motion.div
                   key={note}
                   layout
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  initial={isNew ? { x: 300, opacity: 0 } : { scale: 0.8, opacity: 0 }}
                   animate={{ 
+                    x: 0,
                     scale: 1, 
                     opacity: 1,
                     transition: {

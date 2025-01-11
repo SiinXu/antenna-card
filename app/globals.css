@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 .gradient-text {
-  background: radial-gradient(
-    circle,
-    rgba(234, 191, 230, 1) 0%,
-    rgba(147, 173, 205, 1) 100%
+  background: linear-gradient(
+    to right,
+    #6B7AE5 0%,
+    #A5AFEF 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -16,8 +16,8 @@
 .gradient-background-connecting {
   background: radial-gradient(
     circle,
-    rgb(232, 227, 129) 0%,
-    rgb(172, 178, 220) 100%
+    #6B7AE5 0%,
+    #A5AFEF 100%
   );
 }
 
