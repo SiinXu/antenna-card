@@ -62,10 +62,10 @@ module.exports = {
         },
         'avatar-pulse': {
           '0%, 100%': {
-            'box-shadow': '0 0 15px 5px rgba(168, 85, 247, 0.4), 0 0 30px 10px rgba(168, 85, 247, 0.2)',
+            'box-shadow': '0 0 15px 5px rgba(123, 120, 255, 0.4), 0 0 30px 10px rgba(123, 120, 255, 0.2)',
           },
           '50%': {
-            'box-shadow': '0 0 25px 10px rgba(168, 85, 247, 0.5), 0 0 50px 15px rgba(168, 85, 247, 0.3)',
+            'box-shadow': '0 0 25px 10px rgba(123, 120, 255, 0.5), 0 0 50px 15px rgba(123, 120, 255, 0.3)',
           },
         },
         glow: {

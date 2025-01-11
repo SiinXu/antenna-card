@@ -51,7 +51,7 @@ export default function ClientComponent({ accessToken }) {
               className="relative w-32 h-32 rounded-full object-cover border-2 border-purple-400/30 group-hover:border-purple-400/50 transition-all duration-300 z-10"
             />
           </div>
-          <div className="text-purple-500 text-center font-bold bg-white/20 px-6 py-3 rounded-[16px] backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+          <div className="text-[#7B78FF] text-center font-bold bg-white/20 px-6 py-3 rounded-[16px] backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
             和我一起头脑风暴你的项目想法吧！
           </div>
         </div>
