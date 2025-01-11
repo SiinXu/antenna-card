@@ -61,11 +61,15 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
     const responseContainer = document.getElementById(
       `response-container-${noteIndex}`
     );
-    responseContainer.innerHTML = "";
+    if (responseContainer) {
+      responseContainer.innerHTML = "";
+      let fullResponse = "";
 
-    for await (const chunk of response) {
-      const content = chunk.choices[0].delta.content || "";
-      responseContainer.innerHTML += content;
+      for await (const chunk of response) {
+        const content = chunk.choices[0].delta.content || "";
+        fullResponse += content;
+        responseContainer.innerHTML = `<div class="prose prose-sm max-w-none text-gray-700"><div class="markdown-content">${fullResponse}</div></div>`;
+      }
     }
   };
 
@@ -77,15 +81,17 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
       <div className="flex flex-col overflow-y-auto max-h-screen">
         <MyWrapper>
           {initialNotes.map((note, key) => (
-            <div key={key} id={`response-container-${key}`}>
-              <Card className="h-fit w-48 m-4 bg-glass-gradient backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/20 rounded-xl">
-                <CardContent>
-                  <p className="text-base p-2 text-gray-800">
-                    <div id={`response-container-${key}`} />
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+            <Card
+              key={key}
+              className="h-fit w-48 m-4 bg-glass-gradient backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/20 rounded-xl"
+            >
+              <CardContent>
+                <div
+                  id={`response-container-${key}`}
+                  className="text-base p-2 prose prose-sm max-w-none"
+                />
+              </CardContent>
+            </Card>
           ))}
         </MyWrapper>
       </div>
