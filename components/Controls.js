@@ -16,7 +16,7 @@ export default function Controls() {
             disconnect();
           }}
         >
-          End Session
+          结束对话
         </Button>
       ) : (
         <Button
@@ -34,7 +34,7 @@ export default function Controls() {
               });
           }}
         >
-          {connecting ? "Loading" : "Talk to Mindy!"}
+          {connecting ? "连接中..." : "开始对话"}
         </Button>
       )}
     </div>

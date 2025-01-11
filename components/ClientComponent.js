@@ -52,7 +52,7 @@ export default function ClientComponent({ accessToken }) {
             />
           </div>
           <div className="text-purple-500 text-center font-bold bg-white/20 px-6 py-3 rounded-[16px] backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
-            Brainstorm your project ideas with me!
+            和我一起头脑风暴你的项目想法吧！
           </div>
         </div>
         <VoiceProvider
