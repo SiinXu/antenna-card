@@ -73,13 +73,13 @@ const CardComponent = ({
     switch (pageIndex) {
       case 0:
         return (
-          <div className="p-3">
+          <div className="p-3 min-h-[200px]">
             <Markdown className="prose max-w-none text-gray-700">{note}</Markdown>
           </div>
         );
       case 1:
         return (
-          <div className="p-3">
+          <div className="p-3 min-h-[200px]">
             <h4 className="text-sm font-semibold text-gray-700 mb-2">建议</h4>
             {loading ? (
               <p className="text-sm text-gray-600">加载中...</p>
@@ -92,7 +92,7 @@ const CardComponent = ({
         );
       case 2:
         return (
-          <div className="p-3">
+          <div className="p-3 min-h-[200px]">
             <h4 className="text-sm font-semibold text-gray-700 mb-2">下一步行动</h4>
             {loading ? (
               <p className="text-sm text-gray-600">加载中...</p>
@@ -110,7 +110,7 @@ const CardComponent = ({
     <Card
       ref={drag}
       index={index}
-      className={`h-fit w-200 m-5 transition-all duration-300 ease-in-out shadow-sm hover:shadow-md hover:-translate-y-1 backdrop-blur-sm overflow-hidden ${
+      className={`relative h-fit min-h-[250px] w-[300px] m-5 transition-all duration-300 ease-in-out shadow-sm hover:shadow-md hover:-translate-y-1 backdrop-blur-sm overflow-hidden ${
         excitedNotes.includes(note)
           ? "bg-custom-card-gradient less-intense-ping"
           : noteColors[randomIndex][0]
@@ -120,36 +120,39 @@ const CardComponent = ({
           : ""
       } focus:ring-2 focus:ring-purple-400/50 flex justify-center rounded-[20px] border border-white/20`}
     >
-      <CardContent className="w-full relative">
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={currentPage}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-            className="absolute w-full"
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
-          >
-            {renderContent(currentPage)}
-          </motion.div>
-        </AnimatePresence>
-        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-4">
+      <CardContent className="w-full h-full relative">
+        <div className="relative h-full pb-12"> {/* Add padding bottom for navigation */}
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentPage}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+              }}
+              className="w-full"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1);
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1);
+                }
+              }}
+            >
+              {renderContent(currentPage)}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
           <motion.div
             className="cursor-pointer text-gray-600 hover:text-gray-800"
             whileHover={{ scale: 1.2 }}
@@ -183,14 +186,14 @@ const CardComponent = ({
       </CardContent>
       {hoveredClose === index ? (
         <IoIosCloseCircle
-          className="relative min-w-7 min-h-7 max-h-7 max-w-7 top-6 right-4 cursor-pointer text-gray-600 hover:text-gray-800 transition-colors duration-200"
+          className="absolute min-w-7 min-h-7 max-h-7 max-w-7 top-3 right-3 cursor-pointer text-gray-600 hover:text-gray-800 transition-colors duration-200"
           onMouseEnter={() => setHoveredClose(index)}
           onMouseLeave={() => setHoveredClose(null)}
           onClick={() => deleteNote(index)}
         />
       ) : (
         <IoIosCloseCircleOutline
-          className="relative min-w-7 min-h-7 max-h-7 max-w-7 top-6 right-4 cursor-pointer text-gray-500/70 hover:text-gray-700 transition-colors duration-200"
+          className="absolute min-w-7 min-h-7 max-h-7 max-w-7 top-3 right-3 cursor-pointer text-gray-500/70 hover:text-gray-700 transition-colors duration-200"
           onMouseEnter={() => setHoveredClose(index)}
           onMouseLeave={() => setHoveredClose(null)}
           onClick={() => deleteNote(index)}
