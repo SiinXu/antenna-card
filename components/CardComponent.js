@@ -118,9 +118,9 @@ const CardComponent = ({
         !excitedNotes.includes(note)
           ? noteColors[randomIndex][1]
           : ""
-      } focus:ring-2 focus:ring-purple-400/50 flex justify-center rounded-[20px] border border-white/20`}
+      } focus:ring-2 focus:ring-purple-400/50 flex justify-center rounded-[20px] border border-white/20 group`}
     >
-      <CardContent className="w-full h-full relative group">
+      <CardContent className="w-full h-full relative">
         <div className="relative h-full pb-12"> {/* Add padding bottom for navigation */}
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div

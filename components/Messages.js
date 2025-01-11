@@ -67,12 +67,12 @@ export default function Messages({ notes, newNotes, newExcitedNotes }) {
             >
               <p
                 className={`${
-                  index == 0 ? "text-purple-800" : "text-purple-300"
+                  index == 0 ? "text-[#7B78FF]" : "text-[#B8B5FF]"
                 } font-bold`}
               >
                 {msg.type === "user_message" ? "You:" : "Mindy:"}
               </p>
-              <p className={index == 0 ? "text-purple-800" : "text-purple-300"}>
+              <p className={index == 0 ? "text-[#7B78FF]" : "text-[#B8B5FF]"}>
                 {msg.message.content}
               </p>
             </div>
