@@ -19,17 +19,17 @@ module.exports = {
     extend: {
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(135deg, #ffffff, #8B9DFF, #8B9DFF)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
         "custom-radial-gradient":
-          "linear-gradient(135deg, #ffffff, #8B9DFF, #8B9DFF)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
         "glass-gradient":
-          "linear-gradient(135deg, rgba(139,157,255,0.3), rgba(139,157,255,0.3))",
+          "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
         "button-purple-glow":
-          "radial-gradient(circle at center, rgba(139,157,255,0.6), rgba(139,157,255,0.5))",
+          "radial-gradient(circle at center, rgba(147,112,219,0.6), rgba(147,112,219,0.5))",
         "button-blue-glow":
           "radial-gradient(circle at center, rgba(139,157,255,0.6), rgba(139,157,255,0.5))",
         "button-indigo-glow":
-          "radial-gradient(circle at center, rgba(139,157,255,0.7), rgba(139,157,255,0.6))",
+          "radial-gradient(circle at center, rgba(147,112,219,0.7), rgba(139,157,255,0.6))",
         "button-end-gradient":
           "linear-gradient(to right, rgba(254,202,202,0.9), rgba(252,165,165,0.9))",
         "button-connect-gradient":
@@ -62,18 +62,18 @@ module.exports = {
         },
         'avatar-pulse': {
           '0%, 100%': {
-            'box-shadow': '0 0 15px 5px rgba(139,157,255, 0.4), 0 0 30px 10px rgba(139,157,255, 0.2)',
+            'box-shadow': '0 0 15px 5px rgba(168, 85, 247, 0.4), 0 0 30px 10px rgba(168, 85, 247, 0.2)',
           },
           '50%': {
-            'box-shadow': '0 0 25px 10px rgba(139,157,255, 0.5), 0 0 50px 15px rgba(139,157,255, 0.3)',
+            'box-shadow': '0 0 25px 10px rgba(168, 85, 247, 0.5), 0 0 50px 15px rgba(168, 85, 247, 0.3)',
           },
         },
         glow: {
           '0%, 100%': {
-            'text-shadow': '0 0 10px #8B9DFF, 0 0 20px #8B9DFF, 0 0 30px #8B9DFF'
+            'text-shadow': '0 0 10px #6366f1, 0 0 20px #818cf8, 0 0 30px #93c5fd'
           },
           '50%': {
-            'text-shadow': '0 0 20px #8B9DFF, 0 0 30px #8B9DFF, 0 0 40px #8B9DFF'
+            'text-shadow': '0 0 20px #6366f1, 0 0 30px #818cf8, 0 0 40px #93c5fd'
           }
         }
       },
@@ -95,8 +95,8 @@ module.exports = {
         'glass': '12px',
       },
       colors: {
-        'history-purple': '#8B9DFF',  // Changed to Antenna blue-purple
-        'current-purple': '#8B9DFF',  // Changed to Antenna blue-purple
+        'history-purple': '#E6E6FA',  // 浅紫色用于历史消息
+        'current-purple': '#9370DB',  // 深紫色用于当前消息
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
