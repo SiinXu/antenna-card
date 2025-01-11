@@ -12,19 +12,25 @@ class VolcanoEngine {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": this.apiKey
+              "Authorization": `Bearer ${this.apiKey}`,
+              "X-API-Key": this.apiKey
             },
             body: JSON.stringify({
               model,
               messages,
               stream,
               temperature,
-              max_tokens
+              max_tokens,
+              top_p: 0.7,
+              frequency_penalty: 0,
+              presence_penalty: 0
             })
           });
 
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorData = await response.text();
+            console.error("Volcano API Error:", errorData);
+            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData}`);
           }
 
           if (stream) {
@@ -49,31 +55,43 @@ class VolcanoEngine {
     const decoder = new TextDecoder();
     let buffer = "";
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() || "";
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() || "";
 
-      for (const line of lines) {
-        if (line.trim() === "") continue;
-        if (line.startsWith("data: ")) {
-          const jsonData = JSON.parse(line.slice(6));
-          yield {
-            choices: [{
-              delta: {
-                content: jsonData.data.choices[0].delta.content || ""
-              }
-            }]
-          };
+        for (const line of lines) {
+          if (line.trim() === "") continue;
+          if (line.startsWith("data: ")) {
+            try {
+              const jsonData = JSON.parse(line.slice(6));
+              yield {
+                choices: [{
+                  delta: {
+                    content: jsonData.data.choices[0].delta.content || ""
+                  }
+                }]
+              };
+            } catch (error) {
+              console.error("Error parsing stream data:", error, line);
+            }
+          }
         }
       }
+    } catch (error) {
+      console.error("Stream reading error:", error);
+      throw error;
     }
   }
 }
 
 export default function createVolcanoEngine(config) {
+  if (!config.apiKey) {
+    throw new Error("Volcano API key is required");
+  }
   return new VolcanoEngine(config.apiKey);
 }
