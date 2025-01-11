@@ -41,10 +41,17 @@ export default function ClientComponent({ accessToken }) {
 
   return (
     <div className="flex">
-      <div className="w-80 bg-glass-gradient backdrop-blur-glass flex flex-col justify-end items-center h-screen">
+      <div className="w-80 bg-glass-gradient backdrop-blur-glass flex flex-col justify-end items-center h-screen border-r border-white/20">
         <div className="flex flex-col items-center m-10 space-y-5">
-          <Avatar className="w-32 h-32" {...config} />
-          <div className="text-purple-600 text-center font-bold bg-white/10 px-4 py-2 rounded-[16px] backdrop-blur-sm">
+          <div className="relative group">
+            <div className="absolute inset-0 rounded-full animate-avatar-glow"></div>
+            <img 
+              src="https://i.pinimg.com/originals/a2/b2/9f/a2b29f0577de8897aa845c7dc11f3d3b.gif" 
+              alt="Avatar"
+              className="relative w-32 h-32 rounded-full object-cover border-2 border-purple-400/30 group-hover:border-purple-400/50 transition-all duration-300 z-10"
+            />
+          </div>
+          <div className="text-purple-500 text-center font-bold bg-white/20 px-6 py-3 rounded-[16px] backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
             Brainstorm your project ideas with me!
           </div>
         </div>
@@ -61,7 +68,7 @@ export default function ClientComponent({ accessToken }) {
             newNotes={newNotes}
             newExcitedNotes={newExcitedNotes}
           />
-          <Controls className="bg-button-gradient hover:bg-button-hover-gradient backdrop-blur-glass rounded-[16px] border border-white/20 transition-all duration-300 hover:-translate-y-1" />
+          <Controls className="bg-button-gradient hover:bg-button-hover-gradient backdrop-blur-glass rounded-[16px] border border-white/20 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md" />
         </VoiceProvider>
       </div>
       <div className="flex-1 min-h-screen bg-custom-radial-gradient relative overflow-hidden">

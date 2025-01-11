@@ -47,6 +47,14 @@ module.exports = {
         glow: {
           '0%, 100%': { opacity: 0.5, transform: 'translate(0, 0)' },
           '50%': { opacity: 0.7, transform: 'translate(10px, 10px)' },
+        },
+        'avatar-pulse': {
+          '0%, 100%': {
+            'box-shadow': '0 0 15px 5px rgba(168, 85, 247, 0.4), 0 0 30px 10px rgba(168, 85, 247, 0.2)',
+          },
+          '50%': {
+            'box-shadow': '0 0 25px 10px rgba(168, 85, 247, 0.5), 0 0 50px 15px rgba(168, 85, 247, 0.3)',
+          },
         }
       },
       animation: {
@@ -54,6 +62,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         'float': 'float 10s infinite ease-in-out',
         'glow': 'glow 8s infinite ease-in-out',
+        'avatar-glow': 'avatar-pulse 3s ease-in-out infinite',
       },
       backdropBlur: {
         'glass': '10px',

@@ -13,29 +13,25 @@ const MyWrapper = ({ children }) => {
     <ResponsiveMasonry
       columnsCountBreakPoints={{
         350: 1,
-        600: 1,
         750: 2,
-        900: 3,
-        1200: 4,
-        1400: 5,
-        1600: 6,
+        1024: 3,
+        1280: 4,
+        1536: 5,
       }}
     >
-      <Masonry>{children}</Masonry>
+      <Masonry gutter="1rem">{children}</Masonry>
     </ResponsiveMasonry>
   );
 };
 
 const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
-  console.log(notes);
   const [hoveredClose, setHoveredClose] = useState(null);
-  const [hoverCard, setHoverCard] = useState(null);
   const noteColors = [
-    ["bg-rose-200", "bg-rose-400"],
-    ["bg-sky-200", "bg-sky-400"],
-    ["bg-violet-200", "bg-violet-400"],
-    ["bg-pink-200", "bg-pink-400"],
-    ["bg-emerald-200", "bg-emerald-400"],
+    ["bg-gradient-to-br from-rose-200/30 to-pink-300/30", "bg-gradient-to-br from-rose-300/40 to-pink-400/40"],
+    ["bg-gradient-to-br from-sky-200/30 to-indigo-300/30", "bg-gradient-to-br from-sky-300/40 to-indigo-400/40"],
+    ["bg-gradient-to-br from-violet-200/30 to-purple-300/30", "bg-gradient-to-br from-violet-300/40 to-purple-400/40"],
+    ["bg-gradient-to-br from-fuchsia-200/30 to-pink-300/30", "bg-gradient-to-br from-fuchsia-300/40 to-pink-400/40"],
+    ["bg-gradient-to-br from-blue-200/30 to-cyan-300/30", "bg-gradient-to-br from-blue-300/40 to-cyan-400/40"],
   ];
 
   const deleteNote = (deleteKey) => {
@@ -43,14 +39,11 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
   };
 
   return (
-    <div className="m-5">
+    <div className="p-8">
       <DndProvider backend={HTML5Backend}>
         <MyWrapper>
           {notes.map((note, key) => {
-            // Generate a random index for each note
-            const randomIndex = Math.floor(
-              Math.random() * noteColors.length
-            );
+            const randomIndex = Math.floor(Math.random() * noteColors.length);
             return (
               <CardComponent
                 note={note}
