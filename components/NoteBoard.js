@@ -24,7 +24,7 @@ const MyWrapper = ({ children }) => {
   );
 };
 
-const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
+const NoteBoard = ({ title, notes, newNotes, excitedNotes, newExcitedNotes }) => {
   const [hoveredClose, setHoveredClose] = useState(null);
   const noteColors = [
     ["bg-gradient-to-br from-rose-200/30 to-pink-300/30", "bg-gradient-to-br from-rose-300/40 to-pink-400/40"],
@@ -36,6 +36,7 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
 
   const deleteNote = (noteContent) => {
     newNotes(notes.filter(note => note !== noteContent));
+    newExcitedNotes(excitedNotes.filter(note => note !== noteContent));
   };
 
   return (

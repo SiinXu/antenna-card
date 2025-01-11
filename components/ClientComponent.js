@@ -75,10 +75,11 @@ export default function ClientComponent({ accessToken }) {
         <div className="absolute w-[300px] h-[300px] rounded-full bg-purple-200/50 filter blur-[60px] animate-float top-1/4 left-1/3"></div>
         <div className="absolute w-[300px] h-[300px] rounded-full bg-blue-200/50 filter blur-[60px] animate-glow bottom-1/3 right-1/4"></div>
         <NoteBoard
-          title=""
+          title="Notes"
           notes={notes}
           newNotes={newNotes}
           excitedNotes={excitedNotes}
+          newExcitedNotes={newExcitedNotes}
         />
       </div>
     </div>
