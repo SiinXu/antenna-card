@@ -19,11 +19,16 @@ module.exports = {
     extend: {
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #add8e6)",
         "custom-radial-gradient":
-          "radial-gradient(circle, rgba(234,191,230,1) 0%, rgba(147,173,205,1) 100%)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #add8e6)",
         "custom-card-gradient":
           "radial-gradient(circle, rgba(234,230,191,1) 0%, rgba(241,222,86,1) 100%)",
+        "glass-gradient":
+          "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(173,216,230,0.3))",
+      },
+      backdropBlur: {
+        'glass': '10px',
       },
       colors: {
         border: "hsl(var(--border))",

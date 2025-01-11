@@ -40,21 +40,12 @@ export default function ClientComponent({ accessToken }) {
   };
 
   return (
-    <div className=" flex">
-      <div className="flex-1 min-h-screen bg-custom-radial-gradient">
-        <NoteBoard
-          title=""
-          notes={notes}
-          newNotes={newNotes}
-          excitedNotes={excitedNotes}
-        />
-      </div>
-
-      <div className="w-80 bg-slate-800 flex flex-col justify-end items-center h-screen">
+    <div className="flex">
+      <div className="w-80 bg-glass-gradient backdrop-blur-glass flex flex-col justify-end items-center h-screen">
         <div className="flex flex-col items-center m-10 space-y-5">
           <Avatar className="w-32 h-32" {...config} />
-          <div className=" text-white text-center font-bold">
-            
+          <div className="text-white text-center font-bold">
+            Brainstorm your project ideas with me!
           </div>
         </div>
         <VoiceProvider
@@ -72,6 +63,14 @@ export default function ClientComponent({ accessToken }) {
           />
           <Controls />
         </VoiceProvider>
+      </div>
+      <div className="flex-1 min-h-screen bg-custom-radial-gradient">
+        <NoteBoard
+          title=""
+          notes={notes}
+          newNotes={newNotes}
+          excitedNotes={excitedNotes}
+        />
       </div>
     </div>
   );
