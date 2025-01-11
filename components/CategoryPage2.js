@@ -4,6 +4,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Markdown from "react-markdown";
 import OpenAI from "openai";
 import { analyzeIdea, createActionPlan, takeNotes } from "@/utils/openai";
+import ReactDOM from 'react-dom';
 
 const MyWrapper = ({ children }) => {
   return (
@@ -16,6 +17,7 @@ const MyWrapper = ({ children }) => {
 const NoteCard = ({ content, analysis, actionPlan, index }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const pages = [
     { title: "核心想法", content },
@@ -40,38 +42,57 @@ const NoteCard = ({ content, analysis, actionPlan, index }) => {
     }
   };
 
-  return (
-    <div className="relative group">
-      <Card className="h-fit w-48 m-4 bg-white/10 backdrop-blur-md hover:bg-white/15 transition-all duration-300 border border-white/20 rounded-xl overflow-hidden">
-        <CardContent className="p-4 text-white">
-          <div className="absolute top-2 right-2 flex space-x-2">
-            <button
-              onClick={handleCopy}
-              className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-            >
-              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={handleClose}
-              className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-            >
-              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                />
-              </svg>
-            </button>
-          </div>
+  const handleCardClick = () => {
+    setCurrentPage((prev) => (prev + 1) % pages.length);
+  };
 
-          <div className="mt-6">
+  return (
+    <div 
+      className="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Card 
+        className="h-fit w-64 m-4 bg-white/10 backdrop-blur-lg hover:bg-white/15 transition-all duration-300 border border-white/20 rounded-xl overflow-hidden cursor-pointer"
+        onClick={handleCardClick}
+      >
+        <CardContent className="p-4 text-white relative">
+          {isHovered && (
+            <div className="absolute top-2 right-2 flex space-x-2 z-10">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCopy();
+                }}
+                className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClose();
+                }}
+                className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              >
+                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+
+          <div className="mt-2">
             <h3 className="text-lg font-semibold mb-2">{pages[currentPage].title}</h3>
-            <div className="prose prose-sm max-w-none text-white">
+            <div className="prose prose-invert prose-sm max-w-none">
               <div className="markdown-content">
                 <Markdown>{pages[currentPage].content}</Markdown>
               </div>
@@ -79,33 +100,9 @@ const NoteCard = ({ content, analysis, actionPlan, index }) => {
           </div>
 
           <div className="flex justify-center mt-4 space-x-2">
-            <button
-              onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
-              className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors disabled:opacity-50"
-              disabled={currentPage === 0}
-            >
-              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
-                />
-              </svg>
-            </button>
             <span className="text-sm text-white/80">
-              {currentPage + 1} / {pages.length}
+              点击卡片查看更多 {currentPage + 1}/{pages.length}
             </span>
-            <button
-              onClick={() => setCurrentPage(prev => Math.min(pages.length - 1, prev + 1))}
-              className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors disabled:opacity-50"
-              disabled={currentPage === pages.length - 1}
-            >
-              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                />
-              </svg>
-            </button>
           </div>
         </CardContent>
       </Card>
@@ -139,18 +136,15 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
 
       const container = document.getElementById(`response-container-${noteIndex}`);
       if (container) {
-        const root = container.parentElement;
-        if (root) {
-          root.innerHTML = '';
-          root.appendChild(
-            React.createElement(NoteCard, { 
-              content: noteContent, 
-              analysis: analysis, 
-              actionPlan: actionPlan, 
-              index: noteIndex 
-            })
-          );
-        }
+        ReactDOM.render(
+          <NoteCard 
+            content={noteContent} 
+            analysis={analysis} 
+            actionPlan={actionPlan} 
+            index={noteIndex} 
+          />,
+          container
+        );
       }
     } catch (error) {
       console.error("Error processing note:", error);
@@ -159,15 +153,13 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
 
   return (
     <>
-      <div className="m-4 px-6 py-4 border border-white h-20">
-        <p className="text-white text-5xl font-bold">{title}</p>
+      <div className="m-4 px-6 py-4 border border-white/20 rounded-xl bg-white/5 backdrop-blur-lg">
+        <p className="text-white text-4xl font-bold">{title}</p>
       </div>
       <div className="flex flex-col overflow-y-auto max-h-screen">
         <MyWrapper>
           {initialNotes.map((note, key) => (
-            <div key={key} id={`response-container-${key}`}>
-              <NoteCard content={note} index={key} />
-            </div>
+            <div key={key} id={`response-container-${key}`} />
           ))}
         </MyWrapper>
       </div>
