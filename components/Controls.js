@@ -11,7 +11,7 @@ export default function Controls() {
     <div className="m-8">
       {readyState === VoiceReadyState.OPEN ? (
         <Button
-          className="w-48 h-16 border-2 rounded-md bg-red-400 text-lg"
+          className="w-48 h-16 bg-button-purple-glow backdrop-blur-sm text-white font-bold text-lg border border-white/20 hover:bg-button-indigo-glow hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 rounded-[20px]"
           onClick={() => {
             disconnect();
           }}
@@ -20,8 +20,10 @@ export default function Controls() {
         </Button>
       ) : (
         <Button
-          className={`w-48 h-16 border-2 font-bold text-lg ${
-            connecting ? " bg-yellow-200" : "bg-green-200"
+          className={`w-48 h-16 font-bold text-lg border border-white/20 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 rounded-[20px] text-white ${
+            connecting
+              ? "bg-button-indigo-glow"
+              : "bg-button-blue-glow hover:bg-button-purple-glow"
           }`}
           onClick={() => {
             setConnecting(true);

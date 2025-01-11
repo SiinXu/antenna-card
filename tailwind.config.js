@@ -24,12 +24,18 @@ module.exports = {
           "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
         "glass-gradient":
           "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
-        "button-purple-gradient":
-          "linear-gradient(to right, rgba(233,213,255,0.9), rgba(251,207,255,0.9))",
-        "button-blue-gradient":
-          "linear-gradient(to right, rgba(199,210,254,0.9), rgba(191,219,254,0.9))",
-        "button-indigo-gradient":
-          "linear-gradient(to right, rgba(224,231,255,0.9), rgba(199,210,254,0.9))",
+        "button-purple-glow":
+          "radial-gradient(circle at center, rgba(233,213,255,0.2), rgba(251,207,255,0.1))",
+        "button-blue-glow":
+          "radial-gradient(circle at center, rgba(199,210,254,0.2), rgba(191,219,254,0.1))",
+        "button-indigo-glow":
+          "radial-gradient(circle at center, rgba(224,231,255,0.2), rgba(199,210,254,0.1))",
+        "button-end-gradient":
+          "linear-gradient(to right, rgba(254,202,202,0.9), rgba(252,165,165,0.9))",
+        "button-connect-gradient":
+          "linear-gradient(to right, rgba(167,243,208,0.9), rgba(110,231,183,0.9))",
+        "button-loading-gradient":
+          "linear-gradient(to right, rgba(253,230,138,0.9), rgba(252,211,77,0.9))",
         "button-hover-gradient":
           "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
         "custom-card-gradient":
