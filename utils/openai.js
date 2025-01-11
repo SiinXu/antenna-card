@@ -18,20 +18,17 @@ export async function takeNotes(userMessage) {
 
 但是，如果用户的消息虽然是对话性质的，但包含了项目想法的元素，不要显示那个提醒！
 
-如果用户的消息包含项目想法，请处理这些想法，并用要点列出消息中重要的部分。
+请按照以下三个方面分析用户的想法：
 
-在你的回复中：
+1. 核心想法记录：
 - 使用 Markdown 格式
-- 在你认为重要的术语周围添加粗体标签
+- 在重要的术语周围添加粗体标签
 - 使用三级标题（"###"）来归类相似主题的要点
 - 标题要具体，不要使用"...项目"这样的模糊表述
 - 每句话最多只使用一个粗体标签，不要过度使用
 - 不要添加任何自己的观点
 - 去掉所有对话性的语言
-- 保持回复简洁
-
-专业术语处理：
-- 始终输出中文总结`,
+- 保持回复简洁`,
     },
     {
       role: "user",
@@ -47,20 +44,7 @@ export async function takeNotes(userMessage) {
   const textResponse = response.choices[0].message.content;
   console.log(textResponse);
 
-  // ignores textResponse if the user message was conversational
-  if (
-    textResponse === "conversational language alert!" ||
-    textResponse === "Conversational language alert!" ||
-    textResponse === "Conversational Language Alert!" ||
-    textResponse === "conversational language alert" ||
-    textResponse === "alert: conversational language detected" ||
-    textResponse === "Alert: Conversational Language Detected" ||
-    textResponse === "warning: conversational language" ||
-    textResponse === "Warning: Conversational Language" ||
-    textResponse === "对话语言提醒！" ||
-    textResponse === "提醒：检测到对话语言" ||
-    textResponse === "警告：对话语言"
-  ) {
+  if (textResponse === "哎呀，有点听不懂了！") {
     return "";
   }
   return textResponse;
@@ -106,4 +90,62 @@ export async function summarizeContent(notes) {
 
   const textResponse = summarizeResponse.choices[0].message.content;
   return textResponse;
+}
+
+export async function analyzeIdea(userMessage) {
+  const msg = [
+    {
+      role: "system",
+      content: `你是一个帮助用户分析创意想法的助手。请对用户的想法进行深入分析，必须使用中文输出，保持回复简洁，100字以内。
+
+分析维度包括：
+1. 创新性分析
+- 指出想法的创新点
+- 与现有解决方案的区别
+- 潜在的独特价值
+
+2. 挑战与建议
+- 可能遇到的主要挑战
+- 关键成功因素
+- 改进建议`,
+    },
+    {
+      role: "user",
+      content: `分析这个想法：${userMessage}`,
+    },
+  ];
+
+  const response = await openai.chat.completions.create({
+    messages: msg,
+    model: "gpt-3.5-turbo",
+  });
+
+  return response.choices[0].message.content;
+}
+
+export async function createActionPlan(userMessage) {
+  const msg = [
+    {
+      role: "system",
+      content: `你是一个帮助用户制定行动计划的助手。请根据用户的想法制定具体的行动计划，必须使用中文输出，，保持回复简洁，100字以内。
+
+请按以下结构拆解行动计划：
+
+1. 近期行动（1-2周内）
+- 列出具体任务，标注优先级（高/中/低）
+- 预估每个任务所需时间
+- 建议的完成时间节点`,
+    },
+    {
+      role: "user",
+      content: `为这个想法制定行动计划：${userMessage}`,
+    },
+  ];
+
+  const response = await openai.chat.completions.create({
+    messages: msg,
+    model: "gpt-3.5-turbo",
+  });
+
+  return response.choices[0].message.content;
 }
