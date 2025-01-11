@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Markdown from "react-markdown";
-import OpenAI from "openai";
+import createVolcanoEngine from "@/utils/volcano";
 
 const MyWrapper = ({ children }) => {
   return (
@@ -15,9 +15,8 @@ const MyWrapper = ({ children }) => {
 const CategoryPage2 = ({ title, initialNotes = [] }) => {
   console.log("notes: ", initialNotes);
 
-  const openai = new OpenAI({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
+  const volcano = createVolcanoEngine({
+    apiKey: process.env.NEXT_PUBLIC_VOLCANO_API_KEY,
   });
 
   useEffect(() => {
@@ -48,9 +47,9 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
       },
     ];
 
-    const response = await openai.chat.completions.create({
+    const response = await volcano.chat().completions.create({
       messages: msg,
-      model: "gpt-4o",
+      model: "doubao-pro-128k",
       stream: true,
     });
 

@@ -1,8 +1,7 @@
-import OpenAI from "openai";
+import createVolcanoEngine from "./volcano";
 
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
+const volcano = createVolcanoEngine({
+  apiKey: process.env.NEXT_PUBLIC_VOLCANO_API_KEY,
 });
 
 export async function takeNotes(userMessage) {
@@ -27,16 +26,9 @@ export async function takeNotes(userMessage) {
     },
   ];
 
-  // const response = await openai.chat.completions.create({
-  //   messages: msg,
-  //   model: "gpt-4o",
-  //   stream: true,
-  // });
-
-  const response = await openai.chat.completions.create({
+  const response = await volcano.chat().completions.create({
     messages: msg,
-    // model: "gpt-4o",
-    model: "gpt-3.5-turbo",
+    model: "doubao-pro-128k",
   });
 
   const textResponse = response.choices[0].message.content;
@@ -72,10 +64,9 @@ export async function summarizeContent(notes) {
     },
   ];
 
-  const summarizeResponse = await openai.chat.completions.create({
+  const summarizeResponse = await volcano.chat().completions.create({
     messages: msg,
-    // model: "gpt-3.5-turbo",
-    model: "gpt-4o",
+    model: "doubao-pro-128k",
   });
 
   const textResponse = summarizeResponse.choices[0].message.content;
