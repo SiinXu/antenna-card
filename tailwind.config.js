@@ -97,6 +97,10 @@ module.exports = {
       colors: {
         'history-purple': '#E6E6FA',  // 浅紫色用于历史消息
         'current-purple': '#9370DB',  // 深紫色用于当前消息
+        antenna: {
+          primary: '#6B7AE5',
+          secondary: '#A5AFEF',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -118,7 +118,7 @@ const CardComponent = ({
         !excitedNotes.includes(note)
           ? noteColors[randomIndex][1]
           : ""
-      } focus:ring-2 focus:ring-purple-400/50 flex justify-center rounded-[20px] border border-white/20`}
+      } focus:ring-2 focus:ring-purple-400/50 flex justify-center rounded-[20px] border border-white/20 group`}
     >
       <CardContent className="w-full h-full relative">
         <div className="relative h-full pb-12"> {/* Add padding bottom for navigation */}
@@ -152,70 +152,70 @@ const CardComponent = ({
           </AnimatePresence>
         </div>
         
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
-          <motion.div
-            className={`cursor-pointer transition-colors duration-200 ${
-              excitedNotes.includes(note)
-                ? "text-[#6B7AE5] hover:text-[#5666E5]"
-                : "text-gray-600 hover:text-gray-800"
-            }`}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => paginate(-1)}
-          >
-            <IoIosArrowBack size={24} />
-          </motion.div>
-          <div className="flex gap-1">
-            {[0, 1, 2].map((page) => (
-              <motion.div
-                key={page}
-                className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                  currentPage === page
-                    ? excitedNotes.includes(note)
-                      ? "bg-[#6B7AE5]"
-                      : "bg-gray-600"
-                    : excitedNotes.includes(note)
-                    ? "bg-[#A5AFEF]"
-                    : "bg-gray-300"
-                }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setPage([page, page - currentPage])}
-              />
-            ))}
-          </div>
-          <motion.div
-            className={`cursor-pointer transition-colors duration-200 ${
-              excitedNotes.includes(note)
-                ? "text-[#6B7AE5] hover:text-[#5666E5]"
-                : "text-gray-600 hover:text-gray-800"
-            }`}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => paginate(1)}
-          >
-            <IoIosArrowForward size={24} />
-          </motion.div>
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
+        <motion.div
+          className={`cursor-pointer transition-colors duration-200 ${
+            excitedNotes.includes(note)
+              ? "text-[#6B7AE5] hover:text-[#5666E5]"
+              : "text-gray-600 hover:text-gray-800"
+          }`}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => paginate(-1)}
+        >
+          <IoIosArrowBack size={24} />
+        </motion.div>
+        <div className="flex gap-1">
+          {[0, 1, 2].map((page) => (
+            <motion.div
+              key={page}
+              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                currentPage === page
+                  ? excitedNotes.includes(note)
+                    ? "bg-[#6B7AE5]"
+                    : "bg-gray-600"
+                  : excitedNotes.includes(note)
+                  ? "bg-[#A5AFEF]"
+                  : "bg-gray-300"
+              }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setPage([page, page - currentPage])}
+            />
+          ))}
         </div>
+        <motion.div
+          className={`cursor-pointer transition-colors duration-200 ${
+            excitedNotes.includes(note)
+              ? "text-[#6B7AE5] hover:text-[#5666E5]"
+              : "text-gray-600 hover:text-gray-800"
+          }`}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => paginate(1)}
+        >
+          <IoIosArrowForward size={24} />
+        </motion.div>
+      </div>
       </CardContent>
-      {hoveredClose === index ? (
-        <div
-          className="absolute -top-2 -right-2 cursor-pointer z-10 bg-white rounded-full"
-          onClick={() => deleteNote(index)}
-          onMouseEnter={() => setHoveredClose(index)}
-          onMouseLeave={() => setHoveredClose(null)}
+      <div
+        className={`absolute -top-2 -right-2 cursor-pointer z-10 opacity-0 group-hover:opacity-100 transition-all duration-300`}
+        onClick={(e) => {
+          e.stopPropagation();
+          deleteNote(index);
+        }}
+      >
+        <motion.div 
+          className="bg-white/80 backdrop-blur rounded-full p-1"
+          whileHover={{ 
+            backgroundColor: "rgba(255, 255, 255, 1)",
+            scale: 1.1 
+          }}
+          initial={false}
         >
-          <IoIosCloseCircle className="w-6 h-6 text-red-500" />
-        </div>
-      ) : (
-        <div
-          className="absolute -top-2 -right-2 cursor-pointer z-10 bg-white rounded-full"
-          onMouseEnter={() => setHoveredClose(index)}
-          onMouseLeave={() => setHoveredClose(null)}
-        >
-          <IoIosCloseCircleOutline className="w-6 h-6 text-gray-500" />
-        </div>
-      )}
+          <IoIosCloseCircle className="w-5 h-5 text-gray-400 hover:text-red-500 transition-colors duration-200" />
+        </motion.div>
+      </div>
     </Card>
   );
 };
