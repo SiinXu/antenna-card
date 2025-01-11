@@ -44,7 +44,7 @@ export default function ClientComponent({ accessToken }) {
       <div className="w-80 bg-glass-gradient backdrop-blur-glass flex flex-col justify-end items-center h-screen">
         <div className="flex flex-col items-center m-10 space-y-5">
           <Avatar className="w-32 h-32" {...config} />
-          <div className="text-white text-center font-bold">
+          <div className="text-purple-600 text-center font-bold bg-white/10 px-4 py-2 rounded-[16px] backdrop-blur-sm">
             Brainstorm your project ideas with me!
           </div>
         </div>
@@ -61,10 +61,12 @@ export default function ClientComponent({ accessToken }) {
             newNotes={newNotes}
             newExcitedNotes={newExcitedNotes}
           />
-          <Controls />
+          <Controls className="bg-button-gradient hover:bg-button-hover-gradient backdrop-blur-glass rounded-[16px] border border-white/20 transition-all duration-300 hover:-translate-y-1" />
         </VoiceProvider>
       </div>
-      <div className="flex-1 min-h-screen bg-custom-radial-gradient">
+      <div className="flex-1 min-h-screen bg-custom-radial-gradient relative overflow-hidden">
+        <div className="absolute w-[300px] h-[300px] rounded-full bg-purple-200/50 filter blur-[60px] animate-float top-1/4 left-1/3"></div>
+        <div className="absolute w-[300px] h-[300px] rounded-full bg-blue-200/50 filter blur-[60px] animate-glow bottom-1/3 right-1/4"></div>
         <NoteBoard
           title=""
           notes={notes}

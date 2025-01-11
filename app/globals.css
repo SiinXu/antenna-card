@@ -13,12 +13,6 @@
   color: transparent;
 }
 
-.gradient-background {
-  background: linear-gradient(135deg, #ffffff, #e6e6fa, #add8e6);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
-
 .gradient-background-connecting {
   background: radial-gradient(
     circle,
@@ -27,10 +21,8 @@
   );
 }
 
-.glassmorphism {
-  background: linear-gradient(135deg, rgba(230, 230, 250, 0.3), rgba(173, 216, 230, 0.3));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.less-intense-ping {
+  animation: less-intense-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 @keyframes less-intense-ping {
@@ -43,22 +35,6 @@
     transform: scale(1.15);
     opacity: 0.75;
   }
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.less-intense-ping {
-  animation: less-intense-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .markdown > * {

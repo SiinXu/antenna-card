@@ -19,16 +19,50 @@ module.exports = {
     extend: {
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(135deg, #ffffff, #e6e6fa, #add8e6)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
         "custom-radial-gradient":
-          "linear-gradient(135deg, #ffffff, #e6e6fa, #add8e6)",
+          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
+        "glass-gradient":
+          "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
+        "button-gradient":
+          "linear-gradient(135deg, rgba(230,230,250,0.2), rgba(220,208,255,0.2))",
+        "button-hover-gradient":
+          "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
         "custom-card-gradient":
           "radial-gradient(circle, rgba(234,230,191,1) 0%, rgba(241,222,86,1) 100%)",
-        "glass-gradient":
-          "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(173,216,230,0.3))",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        float: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(30px, 20px) scale(1.1)' },
+        },
+        glow: {
+          '0%, 100%': { opacity: 0.5, transform: 'translate(0, 0)' },
+          '50%': { opacity: 0.7, transform: 'translate(10px, 10px)' },
+        }
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        'float': 'float 10s infinite ease-in-out',
+        'glow': 'glow 8s infinite ease-in-out',
       },
       backdropBlur: {
         'glass': '10px',
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        'glass': '12px',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,25 +98,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
