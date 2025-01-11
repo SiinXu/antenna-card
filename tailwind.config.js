@@ -40,6 +40,8 @@ module.exports = {
           "linear-gradient(135deg, rgba(147,112,219,0.7), rgba(139,157,255,0.6))",
         "custom-card-gradient":
           "radial-gradient(circle, rgba(234,230,191,1) 0%, rgba(241,222,86,1) 100%)",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'text-gradient': 'linear-gradient(to right, #6366f1, #818cf8, #93c5fd)',
       },
       keyframes: {
         "accordion-down": {
@@ -65,6 +67,14 @@ module.exports = {
           '50%': {
             'box-shadow': '0 0 25px 10px rgba(168, 85, 247, 0.5), 0 0 50px 15px rgba(168, 85, 247, 0.3)',
           },
+        },
+        glow: {
+          '0%, 100%': {
+            'text-shadow': '0 0 10px #6366f1, 0 0 20px #818cf8, 0 0 30px #93c5fd'
+          },
+          '50%': {
+            'text-shadow': '0 0 20px #6366f1, 0 0 30px #818cf8, 0 0 40px #93c5fd'
+          }
         }
       },
       animation: {
@@ -73,6 +83,7 @@ module.exports = {
         'float': 'float 10s infinite ease-in-out',
         'glow': 'glow 8s infinite ease-in-out',
         'avatar-glow': 'avatar-pulse 3s ease-in-out infinite',
+        "glow": "glow 2s ease-in-out infinite"
       },
       backdropBlur: {
         'glass': '10px',

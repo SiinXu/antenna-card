@@ -16,6 +16,13 @@ export default async function Home() {
   return (
     <div>
       <ClientComponent accessToken={accessToken} />
+      <div className="absolute top-4 right-8">
+        <div className="relative">
+          <span className="bg-clip-text text-transparent bg-text-gradient text-4xl font-bold animate-glow tracking-wider">
+            antenna
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
