@@ -154,7 +154,11 @@ const CardComponent = ({
         
         <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
           <motion.div
-            className="cursor-pointer text-gray-600 hover:text-gray-800"
+            className={`cursor-pointer transition-colors duration-200 ${
+              excitedNotes.includes(note)
+                ? "text-[#6B7AE5] hover:text-[#5666E5]"
+                : "text-gray-600 hover:text-gray-800"
+            }`}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => paginate(-1)}
@@ -165,8 +169,14 @@ const CardComponent = ({
             {[0, 1, 2].map((page) => (
               <motion.div
                 key={page}
-                className={`w-2 h-2 rounded-full ${
-                  currentPage === page ? "bg-gray-600" : "bg-gray-300"
+                className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                  currentPage === page
+                    ? excitedNotes.includes(note)
+                      ? "bg-[#6B7AE5]"
+                      : "bg-gray-600"
+                    : excitedNotes.includes(note)
+                    ? "bg-[#A5AFEF]"
+                    : "bg-gray-300"
                 }`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
@@ -175,7 +185,11 @@ const CardComponent = ({
             ))}
           </div>
           <motion.div
-            className="cursor-pointer text-gray-600 hover:text-gray-800"
+            className={`cursor-pointer transition-colors duration-200 ${
+              excitedNotes.includes(note)
+                ? "text-[#6B7AE5] hover:text-[#5666E5]"
+                : "text-gray-600 hover:text-gray-800"
+            }`}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => paginate(1)}
@@ -185,19 +199,22 @@ const CardComponent = ({
         </div>
       </CardContent>
       {hoveredClose === index ? (
-        <IoIosCloseCircle
-          className="absolute min-w-7 min-h-7 max-h-7 max-w-7 top-3 right-3 cursor-pointer text-gray-600 hover:text-gray-800 transition-colors duration-200"
+        <div
+          className="absolute -top-3 -right-3 cursor-pointer z-10"
+          onClick={() => deleteNote(index)}  
           onMouseEnter={() => setHoveredClose(index)}
           onMouseLeave={() => setHoveredClose(null)}
-          onClick={() => deleteNote(index)}
-        />
+        >
+          <IoIosCloseCircle className="w-8 h-8 text-red-500" />
+        </div>
       ) : (
-        <IoIosCloseCircleOutline
-          className="absolute min-w-7 min-h-7 max-h-7 max-w-7 top-3 right-3 cursor-pointer text-gray-500/70 hover:text-gray-700 transition-colors duration-200"
+        <div
+          className="absolute -top-3 -right-3 cursor-pointer z-10"
           onMouseEnter={() => setHoveredClose(index)}
           onMouseLeave={() => setHoveredClose(null)}
-          onClick={() => deleteNote(index)}
-        />
+        >
+          <IoIosCloseCircleOutline className="w-8 h-8 text-gray-500" />
+        </div>
       )}
     </Card>
   );

@@ -18,7 +18,7 @@ export default async function Home() {
       <ClientComponent accessToken={accessToken} />
       <div className="absolute top-4 right-8">
         <div className="relative">
-          <span className="bg-clip-text text-transparent bg-text-gradient text-4xl font-bold animate-glow tracking-wider">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6B7AE5] to-[#A5AFEF] text-4xl font-bold animate-glow tracking-wider">
             Antenna
           </span>
         </div>

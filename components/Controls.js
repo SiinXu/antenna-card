@@ -11,7 +11,7 @@ export default function Controls() {
     <div className="m-8">
       {readyState === VoiceReadyState.OPEN ? (
         <Button
-          className="w-48 h-16 bg-button-purple-glow backdrop-blur-sm text-white font-bold text-lg border border-white/20 hover:bg-button-indigo-glow hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 rounded-[20px] bg-white/10"
+          className="w-48 h-16 bg-gradient-to-r from-[#6B7AE5] to-[#A5AFEF] backdrop-blur-sm text-white font-bold text-lg border border-white/20 hover:from-[#5666E5] hover:to-[#8B9AEF] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 rounded-[20px]"
           onClick={() => {
             disconnect();
           }}
@@ -20,10 +20,10 @@ export default function Controls() {
         </Button>
       ) : (
         <Button
-          className={`w-48 h-16 font-bold text-lg border border-white/20 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 rounded-[20px] text-white bg-white/10 ${
+          className={`w-48 h-16 font-bold text-lg border border-white/20 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 rounded-[20px] text-white ${
             connecting
-              ? "bg-button-indigo-glow"
-              : "bg-button-blue-glow hover:bg-button-purple-glow"
+              ? "bg-gradient-to-r from-[#5666E5] to-[#8B9AEF]"
+              : "bg-gradient-to-r from-[#6B7AE5] to-[#A5AFEF] hover:from-[#5666E5] hover:to-[#8B9AEF]"
           }`}
           onClick={() => {
             setConnecting(true);

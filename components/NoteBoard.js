@@ -7,6 +7,7 @@ import { IoIosCloseCircle, IoIosCloseCircleOutline } from "react-icons/io";
 import CardComponent from "./CardComponent";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MyWrapper = ({ children }) => {
   return (
@@ -34,30 +35,69 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
     ["bg-gradient-to-br from-blue-200/30 to-cyan-300/30", "bg-gradient-to-br from-blue-300/40 to-cyan-400/40"],
   ];
 
-  const deleteNote = (deleteKey) => {
-    newNotes(notes.filter((_, key) => key !== deleteKey));
+  const deleteNote = (deleteIndex) => {
+    newNotes(notes.filter((_, index) => index !== deleteIndex));
   };
 
   return (
     <div className="p-8">
       <DndProvider backend={HTML5Backend}>
         <MyWrapper>
-          {notes.map((note, index) => {
-            const randomIndex = Math.floor(Math.random() * noteColors.length);
-            return (
-              <CardComponent
-                note={note}
-                key={index}
-                index={index}
-                randomIndex={randomIndex}
-                noteColors={noteColors}
-                excitedNotes={excitedNotes}
-                hoveredClose={hoveredClose}
-                setHoveredClose={setHoveredClose}
-                deleteNote={deleteNote}
-              />
-            );
-          })}
+          <AnimatePresence mode="popLayout">
+            {notes.map((note, index) => {
+              const randomIndex = Math.floor(Math.random() * noteColors.length);
+              return (
+                <motion.div
+                  key={note}
+                  layout
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ 
+                    scale: 1, 
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                      mass: 1
+                    }
+                  }}
+                  exit={{ 
+                    scale: 0.8, 
+                    opacity: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                      mass: 0.8
+                    }
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                    mass: 1,
+                    layout: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 25
+                    }
+                  }}
+                >
+                  <CardComponent
+                    note={note}
+                    key={index}
+                    index={index}
+                    randomIndex={randomIndex}
+                    noteColors={noteColors}
+                    excitedNotes={excitedNotes}
+                    hoveredClose={hoveredClose}
+                    setHoveredClose={setHoveredClose}
+                    deleteNote={deleteNote}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </MyWrapper>
       </DndProvider>
     </div>
