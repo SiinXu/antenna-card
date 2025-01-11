@@ -38,7 +38,7 @@ export async function takeNotes(userMessage) {
 
   const response = await openai.chat.completions.create({
     messages: msg,
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
   });
 
   const textResponse = response.choices[0].message.content;
@@ -85,7 +85,7 @@ export async function summarizeContent(notes) {
 
   const summarizeResponse = await openai.chat.completions.create({
     messages: msg,
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
   });
 
   const textResponse = summarizeResponse.choices[0].message.content;
@@ -117,7 +117,7 @@ export async function analyzeIdea(userMessage) {
 
   const response = await openai.chat.completions.create({
     messages: msg,
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
   });
 
   return response.choices[0].message.content;
@@ -144,7 +144,7 @@ export async function createActionPlan(userMessage) {
 
   const response = await openai.chat.completions.create({
     messages: msg,
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
   });
 
   return response.choices[0].message.content;

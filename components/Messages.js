@@ -70,7 +70,7 @@ export default function Messages({ notes, newNotes, newExcitedNotes }) {
                   index == 0 ? "text-[#7B78FF]" : "text-[#B8B5FF]"
                 } font-bold`}
               >
-                {msg.type === "user_message" ? "You:" : "Mindy:"}
+                {msg.type === "user_message" ? "You:" : "Antenna:"}
               </p>
               <p className={index == 0 ? "text-[#7B78FF]" : "text-[#B8B5FF]"}>
                 {msg.message.content}
