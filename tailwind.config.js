@@ -19,9 +19,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
+          "linear-gradient(135deg, #ffffff, #B8B5FF, #7B78FF)",
         "custom-radial-gradient":
-          "linear-gradient(135deg, #ffffff, #e6e6fa, #dcd0ff)",
+          "linear-gradient(135deg, #ffffff, #B8B5FF, #7B78FF)",
         "glass-gradient":
           "linear-gradient(135deg, rgba(230,230,250,0.3), rgba(220,208,255,0.3))",
         "button-purple-glow":
