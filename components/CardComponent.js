@@ -152,21 +152,21 @@ const CardComponent = ({
           </AnimatePresence>
         </div>
         
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-4">
           <motion.div
-            className="cursor-pointer text-gray-600 hover:text-gray-800"
+            className="cursor-pointer text-gray-400 hover:text-gray-500 flex items-center"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => paginate(-1)}
           >
             <IoIosArrowBack size={24} />
           </motion.div>
-          <div className="flex gap-1">
+          <div className="flex gap-1 items-center">
             {[0, 1, 2].map((page) => (
               <motion.div
                 key={page}
                 className={`w-2 h-2 rounded-full ${
-                  currentPage === page ? "bg-gray-600" : "bg-gray-300"
+                  currentPage === page ? "bg-gray-400" : "bg-gray-200"
                 }`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
@@ -175,7 +175,7 @@ const CardComponent = ({
             ))}
           </div>
           <motion.div
-            className="cursor-pointer text-gray-600 hover:text-gray-800"
+            className="cursor-pointer text-gray-400 hover:text-gray-500 flex items-center"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => paginate(1)}
