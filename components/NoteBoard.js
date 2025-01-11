@@ -34,8 +34,8 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
     ["bg-gradient-to-br from-blue-200/30 to-cyan-300/30", "bg-gradient-to-br from-blue-300/40 to-cyan-400/40"],
   ];
 
-  const deleteNote = (deleteKey) => {
-    newNotes(notes.filter((_, key) => key !== deleteKey));
+  const deleteNote = (noteContent) => {
+    newNotes(notes.filter(note => note !== noteContent));
   };
 
   return (
