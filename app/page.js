@@ -19,7 +19,7 @@ export default async function Home() {
       <div className="absolute top-4 right-8">
         <div className="relative">
           <span className="bg-clip-text text-transparent bg-text-gradient text-4xl font-bold animate-glow tracking-wider">
-            antenna
+            Antenna
           </span>
         </div>
       </div>

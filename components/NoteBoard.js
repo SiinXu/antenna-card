@@ -42,12 +42,13 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
     <div className="p-8">
       <DndProvider backend={HTML5Backend}>
         <MyWrapper>
-          {notes.map((note, key) => {
+          {notes.map((note, index) => {
             const randomIndex = Math.floor(Math.random() * noteColors.length);
             return (
               <CardComponent
                 note={note}
-                key={key}
+                key={index}
+                index={index}
                 randomIndex={randomIndex}
                 noteColors={noteColors}
                 excitedNotes={excitedNotes}
