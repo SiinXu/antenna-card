@@ -52,31 +52,42 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
       },
     ];
 
-    const response = await volcano.chat().completions.create({
-      messages: msg,
-      model: "doubao-pro-128k",
-      stream: true,
-    });
+    try {
+      const response = await volcano.chat().completions.create({
+        messages: msg,
+        model: "doubao-pro-128k",
+        stream: true,
+      });
 
-    const responseContainer = document.getElementById(
-      `response-container-${noteIndex}`
-    );
-    if (responseContainer) {
-      responseContainer.innerHTML = "";
-      let fullResponse = "";
+      const responseContainer = document.getElementById(
+        `response-container-${noteIndex}`
+      );
 
-      for await (const chunk of response) {
-        const content = chunk.choices[0].delta.content || "";
-        fullResponse += content;
-        responseContainer.innerHTML = `<div class="prose prose-sm max-w-none text-gray-700"><div class="markdown-content">${fullResponse}</div></div>`;
+      if (responseContainer) {
+        responseContainer.innerHTML = "";
+        let fullResponse = "";
+
+        for await (const chunk of response) {
+          const content = chunk.choices[0].delta.content || "";
+          fullResponse += content;
+          // 使用 Markdown 组件渲染内容
+          responseContainer.innerHTML = `
+            <div class="prose prose-sm max-w-none text-history-purple">
+              <div class="markdown-content">
+                ${fullResponse}
+              </div>
+            </div>`;
+        }
       }
+    } catch (error) {
+      console.error("Error processing notes:", error);
     }
   };
 
   return (
     <>
       <div className="m-4 px-6 py-4 border border-white/20 rounded-xl bg-white/5 backdrop-blur-sm">
-        <p className="text-purple-400 text-4xl font-bold">{title}</p>
+        <p className="text-current-purple text-4xl font-bold">{title}</p>
       </div>
       <div className="flex flex-col overflow-y-auto max-h-screen">
         <MyWrapper>
@@ -85,10 +96,10 @@ const CategoryPage2 = ({ title, initialNotes = [] }) => {
               key={key}
               className="h-fit w-48 m-4 bg-glass-gradient backdrop-blur-sm hover:bg-white/10 transition-all duration-300 border border-white/20 rounded-xl"
             >
-              <CardContent>
+              <CardContent className="p-4">
                 <div
                   id={`response-container-${key}`}
-                  className="text-base p-2 prose prose-sm max-w-none"
+                  className="prose prose-sm max-w-none text-history-purple"
                 />
               </CardContent>
             </Card>
