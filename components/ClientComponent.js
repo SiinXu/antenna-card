@@ -43,7 +43,7 @@ export default function ClientComponent({ accessToken }) {
     <div className=" flex">
       <div className="flex-1 min-h-screen bg-custom-radial-gradient">
         <NoteBoard
-          title="Jabber AI"
+          title=""
           notes={notes}
           newNotes={newNotes}
           excitedNotes={excitedNotes}
@@ -54,7 +54,7 @@ export default function ClientComponent({ accessToken }) {
         <div className="flex flex-col items-center m-10 space-y-5">
           <Avatar className="w-32 h-32" {...config} />
           <div className=" text-white text-center font-bold">
-            Brainstorm your project ideas with me!
+            
           </div>
         </div>
         <VoiceProvider

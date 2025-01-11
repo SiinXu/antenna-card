@@ -14,11 +14,7 @@
 }
 
 .gradient-background {
-  background: radial-gradient(
-    circle,
-    rgba(234, 191, 230, 1) 0%,
-    rgba(147, 173, 205, 1) 100%
-  );
+  background: white;
 }
 
 .gradient-background-connecting {

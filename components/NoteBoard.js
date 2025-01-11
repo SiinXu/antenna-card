@@ -43,36 +43,29 @@ const NoteBoard = ({ title, notes, newNotes, excitedNotes }) => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
-      <div className=" px-6 py-4 bg-slate-900 h-20 ">
-        <p className="gradient-text text-5xl font-bold">{title}</p>
-      </div>
-      <div className="flex flex-col overflow-y-auto flex-grow">
-        <div className="m-5">
-          <DndProvider backend={HTML5Backend}>
-            <MyWrapper>
-              {notes.map((note, key) => {
-                // Generate a random index for each note
-                const randomIndex = Math.floor(
-                  Math.random() * noteColors.length
-                );
-                return (
-                  <CardComponent
-                    note={note}
-                    key={key}
-                    randomIndex={randomIndex}
-                    noteColors={noteColors}
-                    excitedNotes={excitedNotes}
-                    hoveredClose={hoveredClose}
-                    setHoveredClose={setHoveredClose}
-                    deleteNote={deleteNote}
-                  />
-                );
-              })}
-            </MyWrapper>
-          </DndProvider>
-        </div>
-      </div>
+    <div className="m-5">
+      <DndProvider backend={HTML5Backend}>
+        <MyWrapper>
+          {notes.map((note, key) => {
+            // Generate a random index for each note
+            const randomIndex = Math.floor(
+              Math.random() * noteColors.length
+            );
+            return (
+              <CardComponent
+                note={note}
+                key={key}
+                randomIndex={randomIndex}
+                noteColors={noteColors}
+                excitedNotes={excitedNotes}
+                hoveredClose={hoveredClose}
+                setHoveredClose={setHoveredClose}
+                deleteNote={deleteNote}
+              />
+            );
+          })}
+        </MyWrapper>
+      </DndProvider>
     </div>
   );
 };
