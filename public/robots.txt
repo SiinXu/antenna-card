@@ -1,0 +1,3 @@
+# 2026-11-26: disallow meta-externalagent only (same rule as the other incidental.site subdomains)
+User-agent: meta-externalagent
+Disallow: /
